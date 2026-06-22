@@ -11,47 +11,32 @@
 
 <style>
 
-html,
-body {
-
-    width:100%;
-    height:100%;
-
-    margin:0;
-
-    overflow:hidden;
-
-    background:#050505;
-
+html,body{
+width:100%;
+height:100%;
+margin:0;
+overflow:hidden;
+background:#050505;
 }
 
 
+body{
 
-body {
+min-height:100vh;
+min-height:100dvh;
 
-    min-height:100vh;
-    min-height:100dvh;
+display:flex;
+justify-content:center;
+align-items:center;
 
-    display:flex;
+font-family:Arial, Helvetica, sans-serif;
 
-    justify-content:center;
+color:#f5f5f5;
 
-    align-items:center;
+background:
+radial-gradient(circle at center,#202020,#121212,#050505);
 
-    color:#f5f5f5;
-
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:
-
-    radial-gradient(
-    circle at center,
-    #202020 0%,
-    #121212 45%,
-    #050505 100%
-    );
-
-    transition:background .5s, color .5s;
+transition:.5s;
 
 }
 
@@ -59,53 +44,33 @@ body {
 
 
 
-/* toggle button */
+.themeButton{
 
-.themeButton {
+position:absolute;
 
-    position:absolute;
+top:25px;
 
-    top:25px;
+right:25px;
 
-    right:25px;
+z-index:9999;
 
-    z-index:9999;
+width:45px;
 
+height:45px;
 
-    width:45px;
-    height:45px;
+border-radius:50%;
 
+border:1px solid rgba(255,255,255,.15);
 
-    border-radius:50%;
+background:rgba(255,255,255,.08);
 
+color:white;
 
-    border:1px solid rgba(255,255,255,0.15);
+cursor:pointer;
 
+backdrop-filter:blur(10px);
 
-    background:rgba(255,255,255,0.08);
-
-
-    color:white;
-
-
-    cursor:pointer;
-
-
-    backdrop-filter:blur(10px);
-
-
-    font-size:20px;
-
-
-    transition:.3s;
-
-}
-
-
-
-.themeButton:hover {
-
-    transform:scale(1.1);
+font-size:20px;
 
 }
 
@@ -113,50 +78,40 @@ body {
 
 
 
-body::before {
+body::before{
 
-    content:"";
+content:"";
 
-    position:absolute;
+position:absolute;
 
-    width:200vw;
-    height:200vh;
+z-index:0;
 
-    left:50%;
-    top:50%;
+width:200vw;
 
-    transform:translate(-50%, -50%);
+height:200vh;
 
+background:
 
-    background:
+radial-gradient(circle,
 
-    radial-gradient(
-    circle,
-    rgba(255,255,255,0.035),
-    transparent 70%
-    );
+rgba(255,255,255,.035),
 
+transparent 70%);
 
-    animation:greyMove 10s infinite alternate;
-
-    z-index:0;
+animation:greyMove 10s infinite alternate;
 
 }
 
 
 
-@keyframes greyMove {
+@keyframes greyMove{
 
-from {
-
+from{
 transform:translate(-40px,-30px);
-
 }
 
-to {
-
+to{
 transform:translate(40px,30px);
-
 }
 
 }
@@ -165,35 +120,48 @@ transform:translate(40px,30px);
 
 
 
-body::after {
+body::after{
 
-    content:"";
+content:"";
 
-    position:absolute;
+position:absolute;
 
-    width:200vw;
-    height:200vh;
+z-index:0;
 
-    top:50%;
-    left:50%;
+width:200vw;
+
+height:200vh;
+
+background:
+
+radial-gradient(circle,
+
+rgba(45,90,255,.28),
+
+transparent 65%);
 
 
-    background:
+filter:blur(45px);
 
-    radial-gradient(
-    circle,
-    rgba(45,90,255,0.28),
-    transparent 65%
-    );
+animation:blueMove 12s infinite ease-in-out;
+
+}
 
 
-    filter:blur(45px);
 
-    animation:blueMove 12s ease-in-out infinite;
+@keyframes blueMove{
 
-    pointer-events:none;
+0%{
+transform:translate(-60%,-50%) scale(.9);
+}
 
-    z-index:0;
+50%{
+transform:translate(-45%,-35%) scale(1.15);
+}
+
+100%{
+transform:translate(-60%,-50%) scale(.9);
+}
 
 }
 
@@ -201,74 +169,55 @@ body::after {
 
 
 
-@keyframes blueMove {
 
 
-0% { transform:translate(-60%,-50%) scale(0.9); opacity:0.6; }
-
-25% { transform:translate(-40%,-60%) scale(1.05); opacity:0.8; }
-
-50% { transform:translate(-45%,-35%) scale(1.15); opacity:1; }
-
-75% { transform:translate(-65%,-45%) scale(1.05); opacity:0.8; }
-
-100% { transform:translate(-60%,-50%) scale(0.9); opacity:0.6; }
-
-}
-
-
-
-
-
-
-.card {
+.card{
 
 position:relative;
 
-z-index:1;
+z-index:2;
 
 text-align:center;
 
 width:min(650px,80vw);
 
-padding:90px 130px;
+padding:80px 60px;
 
 
-background:rgba(255,255,255,0.045);
+background:rgba(255,255,255,.045);
 
 
-border:1px solid rgba(255,255,255,0.12);
+border:1px solid rgba(255,255,255,.12);
+
 
 border-radius:35px;
+
 
 backdrop-filter:blur(20px);
 
 
+
 box-shadow:
 
-inset 0 0 30px rgba(255,255,255,0.02),
+inset 0 0 30px rgba(255,255,255,.02),
 
-0 30px 100px rgba(0,0,0,0.7);
+0 30px 100px rgba(0,0,0,.7);
 
 
-transition:transform .35s ease, box-shadow .35s ease;
+transition:.35s;
 
 }
 
 
 
-
-
-.card:hover {
+.card:hover{
 
 transform:translateY(-10px) scale(1.03);
 
 
 box-shadow:
 
-inset 0 0 30px rgba(255,255,255,0.01),
-
-0 45px 130px rgba(0,0,0,0.9);
+0 45px 130px rgba(0,0,0,.9);
 
 }
 
@@ -276,59 +225,13 @@ inset 0 0 30px rgba(255,255,255,0.01),
 
 
 
-.card::after {
-
-content:"";
-
-position:absolute;
-
-inset:-2px;
-
-border-radius:35px;
-
-
-background:
-
-linear-gradient(
-
-120deg,
-
-transparent,
-
-rgba(255,255,255,0.05),
-
-transparent
-
-);
-
-
-opacity:0;
-
-transition:.35s;
-
-z-index:-1;
-
-}
-
-
-
-.card:hover::after {
-
-opacity:1;
-
-}
-
-
-
-
-
-h1 {
+h1{
 
 margin:0;
 
 font-size:clamp(2.2rem,6vw,4rem);
 
-letter-spacing:clamp(2px,.4vw,6px);
+letter-spacing:5px;
 
 font-weight:500;
 
@@ -338,13 +241,98 @@ font-weight:500;
 
 
 
-p {
+p{
 
-margin-top:45px;
+margin-top:40px;
 
 color:#888;
 
-font-size:clamp(1.1rem,2vw,1.35rem);
+}
+
+
+
+
+
+.achievement{
+
+text-align:left;
+
+margin:15px 0;
+
+padding:15px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.06);
+
+}
+
+
+
+.locked{
+
+opacity:.45;
+
+}
+
+
+
+
+/* ADDED SCROLLING */
+
+#list{
+
+max-height:45vh;
+
+overflow-y:auto;
+
+padding-right:8px;
+
+}
+
+
+
+#list::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+
+
+#list::-webkit-scrollbar-thumb{
+
+background:rgba(255,255,255,.25);
+
+border-radius:10px;
+
+}
+
+
+
+
+
+.reset{
+
+margin-top:20px;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+
+
+
+
+.hidden{
+
+display:none;
 
 }
 
@@ -353,6 +341,7 @@ font-size:clamp(1.1rem,2vw,1.35rem);
 
 
 @media(max-width:600px){
+
 
 .card{
 
@@ -364,33 +353,6 @@ border-radius:28px;
 
 }
 
-p{
-
-margin-top:30px;
-
-}
-
-}
-
-
-
-
-
-/* light mode */
-
-.light {
-
-background:radial-gradient(circle at center,#eee,#bbb,#777);
-
-color:#111;
-
-}
-
-
-
-.light p {
-
-color:#333;
 
 }
 
@@ -407,7 +369,8 @@ color:#333;
 
 
 
-<div class="card">
+
+<div class="card" id="main">
 
 <h1>Alfie Ben Levey</h1>
 
@@ -419,12 +382,297 @@ color:#333;
 
 
 
+
+<div class="card hidden" id="achievements">
+
+
+<h1>Achievements</h1>
+
+
+<div id="list"></div>
+
+
+<button class="reset" onclick="resetAsk()">
+
+Reset Achievements
+
+</button>
+
+
+<br><br>
+
+
+<button onclick="closeAchievements()">
+
+Back
+
+</button>
+
+
+</div>
+
+
+
+
+
+
 <script>
 
 
-let clicks=[];
+let data =
+JSON.parse(localStorage.getItem("achievements")) || {};
 
-let secretActive=false;
+
+
+let cardClicks=0;
+
+let achOpen=0;
+
+let startTime=Date.now();
+
+
+
+
+
+
+const achievements={
+
+
+welcome:{
+name:"Welcome",
+hint:"Something happens when you arrive...",
+text:"You arrived. That was the first step."
+},
+
+
+explorer:{
+name:"Explorer",
+hint:"Maybe the card has more than one purpose...",
+text:"You looked around instead of leaving."
+},
+
+
+colour:{
+name:"Colour Hunter",
+hint:"Some things appear when you click enough...",
+text:"You found the hidden colours."
+},
+
+
+night:{
+name:"Night Mode",
+hint:"There are two sides to this page...",
+text:"You saw both sides."
+},
+
+
+early:{
+name:"Early Visitor",
+hint:"The time you visit might matter...",
+text:"You found the website before most people wake up."
+},
+
+
+professional:{
+name:"Professional",
+hint:"Try doing nothing...",
+text:"You stayed longer than expected."
+},
+
+
+collector:{
+name:"Collector",
+hint:"There are more secrets hidden here...",
+text:"You started collecting."
+},
+
+
+triopen:{
+name:"Triopen",
+hint:"Maybe opening it once isn't enough...",
+text:"You kept checking."
+},
+
+
+restart:{
+name:"Restarting",
+hint:"Sometimes starting again reveals something...",
+text:"You erased everything. Then found this."
+},
+
+
+completion:{
+name:"Completionist",
+hint:"Hidden",
+text:"You found everything hidden on this page."
+}
+
+};
+
+
+
+
+
+
+
+function save(){
+
+localStorage.setItem(
+"achievements",
+JSON.stringify(data)
+);
+
+}
+
+
+
+
+
+
+function unlock(id){
+
+if(!data[id]){
+
+data[id]=true;
+
+save();
+
+}
+
+}
+
+
+
+
+
+
+
+function render(){
+
+
+let html="";
+
+
+let count=
+
+Object.keys(achievements)
+
+.filter(x=>x!="completion")
+
+.filter(x=>data[x]).length;
+
+
+
+Object.keys(achievements).forEach(id=>{
+
+
+if(id=="completion" && count<9)return;
+
+
+
+html+=`
+
+<div class="achievement ${data[id]?"":"locked"}">
+
+
+<h3>
+
+${data[id]?"🏆":"🔒"}
+
+${achievements[id].name}
+
+</h3>
+
+
+<p>
+
+${data[id]?
+
+achievements[id].text:
+
+achievements[id].hint}
+
+</p>
+
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("list").innerHTML=html;
+
+
+}
+
+
+
+
+
+
+document.getElementById("main").onclick=function(){
+
+
+cardClicks++;
+
+
+if(cardClicks>=3){
+
+openAchievements();
+
+}
+
+
+};
+
+
+
+
+
+
+function openAchievements(){
+
+
+unlock("explorer");
+
+
+achOpen++;
+
+
+if(achOpen>=3)
+
+unlock("triopen");
+
+
+
+document.getElementById("main").classList.add("hidden");
+
+
+document.getElementById("achievements").classList.remove("hidden");
+
+
+render();
+
+}
+
+
+
+
+
+
+function closeAchievements(){
+
+
+document.getElementById("achievements").classList.add("hidden");
+
+
+document.getElementById("main").classList.remove("hidden");
+
+
+}
+
 
 
 
@@ -433,54 +681,44 @@ let secretActive=false;
 function toggleTheme(){
 
 
-
-// if secret theme is active → turn it off
-
-if(secretActive){
-
-resetTheme();
-
-secretActive=false;
-
-document.querySelector(".themeButton").textContent="☀";
-
-return;
-
-}
-
-
-
-// track clicks for secret
-
-clicks.push(Date.now());
-
-clicks=clicks.filter(t=>Date.now()-t<5000);
-
-
-
-if(clicks.length>=5){
-
-applySecretTheme();
-
-secretActive=true;
-
-clicks=[];
-
-return;
-
-}
-
-
-
-// normal toggle
-
 document.body.classList.toggle("light");
 
-document.querySelector(".themeButton").textContent=
 
-document.body.classList.contains("light")
+unlock("night");
 
-?"🌙":"☀";
+
+}
+
+
+
+
+
+
+
+function resetAsk(){
+
+
+if(confirm("Are you sure? This will remove all saved achievements.")){
+
+
+let old=data.restart;
+
+
+data={};
+
+
+if(!old){
+
+data.restart=true;
+
+}
+
+
+save();
+
+render();
+
+}
 
 }
 
@@ -488,63 +726,10 @@ document.body.classList.contains("light")
 
 
 
-function applySecretTheme(){
 
+if(Object.keys(data).length==0){
 
-
-let themes=[
-
-{a:"#ff7eb3",b:"#65d6ff",t:"#111"},
-
-{a:"#9b5cff",b:"#00ffcc",t:"#fff"},
-
-{a:"#ff9966",b:"#ff5e62",t:"#111"},
-
-{a:"#00c6ff",b:"#0072ff",t:"#fff"},
-
-{a:"#f7971e",b:"#ffd200",t:"#111"},
-
-{a:"#43e97b",b:"#38f9d7",t:"#111"}
-
-];
-
-
-
-let d=new Date();
-
-
-
-let index=
-
-(d.getFullYear()+d.getMonth()+d.getDate())
-
-%themes.length;
-
-
-
-let theme=themes[index];
-
-
-
-document.body.style.background=
-
-`radial-gradient(circle at center,${theme.a},${theme.b})`;
-
-
-
-document.body.style.color=theme.t;
-
-document.querySelector(".card").style.color=theme.t;
-
-document.querySelector("p").style.color=theme.t;
-
-document.querySelector(".themeButton").style.color=theme.t;
-
-document.querySelector(".themeButton").style.background="rgba(255,255,255,0.25)";
-
-
-
-document.querySelector(".themeButton").textContent="✦";
+unlock("welcome");
 
 }
 
@@ -552,33 +737,35 @@ document.querySelector(".themeButton").textContent="✦";
 
 
 
-function resetTheme(){
+if(new Date().getHours()<6){
 
-
-
-document.body.style.background="";
-
-document.body.style.color="";
-
-document.querySelector(".card").style.color="";
-
-document.querySelector("p").style.color="";
-
-document.querySelector(".themeButton").style.color="";
-
-document.querySelector(".themeButton").style.background="";
-
-document.body.classList.remove("light");
-
-
+unlock("early");
 
 }
+
+
+
+
+
+
+setInterval(()=>{
+
+
+if(Date.now()-startTime>60000)
+
+unlock("professional");
+
+
+},1000);
+
+
+
 
 
 
 </script>
 
 
-
 </body>
+
 </html>
