@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
@@ -14,104 +15,206 @@ width:100%;
 height:100%;
 margin:0;
 overflow:hidden;
-font-family:Arial, Helvetica, sans-serif;
+background:#050505;
 }
 
-/* BASE THEME */
 body{
+
+min-height:100vh;
+min-height:100dvh;
+
 display:flex;
 justify-content:center;
 align-items:center;
-color:white;
-background:radial-gradient(circle,#202020,#121212,#050505);
-transition:.5s;
+
+color:#f5f5f5;
+font-family:Arial, Helvetica, sans-serif;
+
+background:
+radial-gradient(circle at center,#202020 0%,#121212 45%,#050505 100%);
+
+transition:background .5s,color .5s;
+
 }
 
 
-/* BUTTON */
+/* button */
 .themeButton{
+
 position:absolute;
-top:20px;
-right:20px;
+top:25px;
+right:25px;
+z-index:9999;
+
 width:45px;
 height:45px;
+
 border-radius:50%;
-border:1px solid rgba(255,255,255,.2);
-background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,0.15);
+
+background:rgba(255,255,255,0.08);
+
 cursor:pointer;
-font-size:18px;
-z-index:10;
+
+font-size:20px;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+
+}
+
+.themeButton:hover{
+transform:scale(1.1);
 }
 
 
-/* CARD */
+/* background animation */
+body::before{
+
+content:"";
+position:absolute;
+
+width:200vw;
+height:200vh;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+background:radial-gradient(circle,rgba(255,255,255,0.035),transparent 70%);
+
+animation:greyMove 10s infinite alternate;
+
+z-index:0;
+
+}
+
+@keyframes greyMove{
+from{transform:translate(-40px,-30px);}
+to{transform:translate(40px,30px);}
+}
+
+
+/* blue glow */
+body::after{
+
+content:"";
+position:absolute;
+
+width:200vw;
+height:200vh;
+
+top:50%;
+left:50%;
+
+background:radial-gradient(circle,rgba(45,90,255,0.28),transparent 65%);
+
+filter:blur(45px);
+
+animation:blueMove 12s ease-in-out infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+@keyframes blueMove{
+0%{transform:translate(-60%,-50%) scale(0.9);opacity:0.6;}
+25%{transform:translate(-40%,-60%) scale(1.05);opacity:0.8;}
+50%{transform:translate(-45%,-35%) scale(1.15);opacity:1;}
+75%{transform:translate(-65%,-45%) scale(1.05);opacity:0.8;}
+100%{transform:translate(-60%,-50%) scale(0.9);opacity:0.6;}
+}
+
+
+/* card */
 .card{
+
+position:relative;
+z-index:1;
+
 text-align:center;
-width:min(650px,85vw);
-padding:70px 50px;
-border-radius:30px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.15);
+
+width:min(650px,80vw);
+
+padding:90px 130px;
+
+background:rgba(255,255,255,0.045);
+
+border:1px solid rgba(255,255,255,0.12);
+
+border-radius:35px;
+
 backdrop-filter:blur(20px);
+
+box-shadow:
+inset 0 0 30px rgba(255,255,255,0.02),
+0 30px 100px rgba(0,0,0,0.7);
+
+transition:transform .35s ease, box-shadow .35s ease;
+
 }
 
-h1{margin:0;font-size:clamp(2rem,6vw,4rem);}
-p{margin-top:35px;color:rgba(255,255,255,.75);}
-
-
-/* ACHIEVEMENTS */
-.hidden{display:none;}
-
-#list{
-max-height:45vh;
-overflow-y:auto;
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 45px 130px rgba(0,0,0,0.9);
 }
 
-.achievement{
-text-align:left;
-margin:12px 0;
-padding:12px;
-border-radius:12px;
-background:rgba(255,255,255,.08);
+.card::after{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:35px;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.05),transparent);
+opacity:0;
+transition:.35s;
+z-index:-1;
 }
 
-.locked{opacity:.4;}
-
-.reset{
-margin-top:20px;
-padding:10px 20px;
-border-radius:15px;
-border:none;
-cursor:pointer;
+.card:hover::after{
+opacity:1;
 }
 
 
-/* LIGHT MODE */
+/* text */
+h1{
+margin:0;
+font-size:clamp(2.2rem,6vw,4rem);
+letter-spacing:clamp(2px,.4vw,6px);
+font-weight:500;
+}
+
+p{
+margin-top:45px;
+color:#888;
+font-size:clamp(1.1rem,2vw,1.35rem);
+}
+
+
+/* mobile */
+@media(max-width:600px){
+.card{
+width:82vw;
+padding:45px 25px;
+border-radius:28px;
+}
+p{
+margin-top:30px;
+}
+}
+
+
+/* light mode */
 .light{
-background:radial-gradient(circle,#eee,#bbb,#777);
+background:radial-gradient(circle at center,#eee,#bbb,#777);
 color:#111;
 }
 
-.light .card{
-background:rgba(255,255,255,.45);
-}
-
 .light p{
-color:#222;
-}
-
-
-/* SECRET MODE */
-.secret{
-color:white;
-}
-
-.secret .card{
-background:rgba(0,0,0,.35);
-}
-
-.secret p{
-color:white;
+color:#333;
 }
 
 </style>
@@ -122,197 +225,19 @@ color:white;
 
 <button class="themeButton" onclick="toggleTheme()">☀</button>
 
-<div class="card" id="main">
+<div class="card">
 <h1>Alfie Ben Levey</h1>
 <p>I'm better than you and you know it</p>
 </div>
 
-
-
-<div class="card hidden" id="achievements">
-
-<h1>Achievements</h1>
-
-<div id="list"></div>
-
-<button class="reset" onclick="resetAch()">Reset</button>
-<br><br>
-<button onclick="closeAch()">Back</button>
-
-</div>
-
-
-
 <script>
 
-/* STORAGE */
-let data = JSON.parse(localStorage.getItem("achievements")) || {};
-
-/* STATES */
-let clicks = [];
-let secret = false;
-let light = false;
-let opens = 0;
-let cardClicks = 0;
-let start = Date.now();
-
-
-/* ACHIEVEMENTS */
-const A = {
-welcome:["Welcome","Open the site","You arrived"],
-explorer:["Explorer","Click the card","You found achievements"],
-colour:["Colour Hunter","Find secrets","You unlocked secret themes"],
-night:["Night Mode","Use toggle","You changed theme"],
-early:["Early Bird","Visit early","You came before 6am"],
-professional:["Professional","Stay a while","You stayed 60s"],
-collector:["Collector","Keep exploring","You collected items"],
-triopen:["Triopen","Open menu 3 times","You did it"],
-restart:["Restarting","Reset game","You restarted everything"],
-completion:["Completionist","Hidden","You found everything"]
-};
-
-
-/* SAVE */
-function save(){
-localStorage.setItem("achievements",JSON.stringify(data));
-}
-
-/* UNLOCK */
-function unlock(x){
-if(!data[x]){
-data[x]=true;
-save();
-}
-}
-
-
-/* RENDER */
-function render(){
-let html="";
-let count = Object.keys(data).filter(x=>x!="completion").length;
-
-Object.keys(A).forEach(id=>{
-
-if(id=="completion" && count<9) return;
-
-html+=`
-<div class="achievement ${data[id]?"":"locked"}">
-<h3>${data[id]?"🏆":"🔒"} ${A[id][0]}</h3>
-<p>${data[id]?A[id][2]:A[id][1]}</p>
-</div>
-`;
-});
-
-document.getElementById("list").innerHTML=html;
-}
-
-
-/* CARD CLICK */
-document.getElementById("main").onclick=()=>{
-
-cardClicks++;
-
-if(cardClicks>=3){
-unlock("explorer");
-opens++;
-if(opens>=3) unlock("triopen");
-
-document.getElementById("main").classList.add("hidden");
-document.getElementById("achievements").classList.remove("hidden");
-render();
-}
-
-};
-
-
-
-/* CLOSE */
-function closeAch(){
-document.getElementById("achievements").classList.add("hidden");
-document.getElementById("main").classList.remove("hidden");
-}
-
-
-/* THEME TOGGLE */
 function toggleTheme(){
+document.body.classList.toggle("light");
 
-/* TURN OFF SECRET */
-if(secret){
-document.body.classList.remove("secret");
-document.body.style.background="radial-gradient(circle,#202020,#121212,#050505)";
-secret=false;
-return;
+document.querySelector(".themeButton").textContent =
+document.body.classList.contains("light") ? "🌙" : "☀";
 }
-
-/* SECRET CLICK TRACK */
-clicks.push(Date.now());
-clicks = clicks.filter(t=>Date.now()-t<5000);
-
-if(clicks.length>=5){
-secretTheme();
-clicks=[];
-return;
-}
-
-/* LIGHT MODE */
-light=!light;
-document.body.classList.toggle("light",light);
-
-unlock("night");
-
-}
-
-
-/* DAILY SECRET THEME */
-function secretTheme(){
-
-let themes=[
-["#ff7eb3","#65d6ff"],
-["#9b5cff","#00ffcc"],
-["#ff9966","#ff5e62"],
-["#00c6ff","#0072ff"],
-["#43e97b","#38f9d7"],
-["#f7971e","#ffd200"],
-["#ee0979","#ff6a00"],
-["#654ea3","#eaafc8"],
-["#141e30","#243b55"],
-["#000428","#004e92"]
-];
-
-let d=new Date();
-let seed = d.getFullYear()+d.getMonth()+d.getDate();
-
-let t = themes[seed % themes.length];
-
-document.body.style.background =
-`radial-gradient(circle,${t[0]},${t[1]})`;
-
-document.body.classList.add("secret");
-
-secret = true;
-
-unlock("colour");
-
-}
-
-
-/* RESET */
-function resetAch(){
-if(confirm("Reset achievements?")){
-data={};
-save();
-render();
-}
-}
-
-
-/* AUTO */
-if(Object.keys(data).length===0) unlock("welcome");
-if(new Date().getHours()<6) unlock("early");
-
-setInterval(()=>{
-if(Date.now()-start>60000) unlock("professional");
-},1000);
 
 </script>
 
