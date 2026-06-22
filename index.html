@@ -12,7 +12,7 @@
 body {
 
     margin:0;
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
     justify-content:center;
@@ -98,57 +98,31 @@ body::after {
 @keyframes blueMove {
 
     0% {
-
-        transform:
-        translate(-60%, -50%)
-        scale(0.9);
-
+        transform:translate(-60%, -50%) scale(0.9);
         opacity:0.6;
-
     }
 
     25% {
-
-        transform:
-        translate(-40%, -60%)
-        scale(1.05);
-
+        transform:translate(-40%, -60%) scale(1.05);
         opacity:0.8;
-
     }
 
     50% {
-
-        transform:
-        translate(-45%, -35%)
-        scale(1.15);
-
+        transform:translate(-45%, -35%) scale(1.15);
         opacity:1;
-
     }
 
     75% {
-
-        transform:
-        translate(-65%, -45%)
-        scale(1.05);
-
+        transform:translate(-65%, -45%) scale(1.05);
         opacity:0.8;
-
     }
 
     100% {
-
-        transform:
-        translate(-60%, -50%)
-        scale(0.9);
-
+        transform:translate(-60%, -50%) scale(0.9);
         opacity:0.6;
-
     }
 
 }
-
 
 
 
@@ -160,7 +134,11 @@ body::after {
 
     text-align:center;
 
-    padding:90px 130px;
+    width:min(90vw, 900px);
+
+    padding:
+    clamp(40px, 8vw, 90px)
+    clamp(35px, 10vw, 130px);
 
     background:
     rgba(255,255,255,0.045);
@@ -185,13 +163,11 @@ body::after {
 
 
 
-
 .card:hover {
 
     transform:
     translateY(-10px)
     scale(1.03);
-
 
     box-shadow:
 
@@ -200,7 +176,6 @@ body::after {
     0 45px 130px rgba(0,0,0,0.9);
 
 }
-
 
 
 
@@ -214,7 +189,6 @@ body::after {
 
     border-radius:35px;
 
-
     background:
 
     linear-gradient(
@@ -224,11 +198,9 @@ body::after {
     transparent
     );
 
-
     opacity:0;
 
     transition:0.35s;
-
 
     z-index:-1;
 
@@ -244,14 +216,13 @@ body::after {
 
 
 
-
 h1 {
 
     margin:0;
 
-    font-size:4rem;
+    font-size:clamp(2rem, 6vw, 4rem);
 
-    letter-spacing:6px;
+    letter-spacing:clamp(2px, 0.5vw, 6px);
 
     font-weight:500;
 
@@ -262,14 +233,13 @@ h1 {
 
 
 
-
 p {
 
     margin-top:45px;
 
     color:#888;
 
-    font-size:1.35rem;
+    font-size:clamp(1rem, 2.5vw, 1.35rem);
 
 }
 
@@ -279,9 +249,7 @@ p {
 
 </head>
 
-
 <body>
-
 
 <div class="card">
 
@@ -290,7 +258,6 @@ p {
 <p>I'm better than you and you know it</p>
 
 </div>
-
 
 </body>
 
